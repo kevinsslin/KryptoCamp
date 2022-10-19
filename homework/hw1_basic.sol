@@ -15,12 +15,18 @@ contract MyNFT is ERC721 {
 
     // amount 表示要 mint 給自己幾次
     function mint(uint256 tokenId, uint256 amount) public {
-        tokenId = 0;
         for (uint256 i = 0; i < amount; i++) {
             // uint256 tokenId = _tokenIds.current();
             _mint(msg.sender, tokenId);
             tokenId += 1;
             // _tokenIds.increment();
+        }
+    }
+    // to 是要轉給哪個地址，amount 是要轉多少
+    function mintToken(uint256 tokenId, address to, uint amount) public {
+        for (uint256 i = 0; i < amount; i++) {
+            _mint(to, tokenId);
+            tokenId += 1;
         }
     }
 }
